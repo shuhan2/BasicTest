@@ -23,17 +23,46 @@ public class PracticeC {
             }
             //长度不为1的特殊情况，用正则表达式截取其中的数字
             else {
-                String strvalue = str.substring(0,1);
-                String regExp = "[^0-9]";
-                Pattern pattern = Pattern.compile(regExp);
-                Matcher matcher = pattern.matcher(str);
+//                String strvalue = str.substring(0,1);
+//                String regExp = "[^0-9]";
+//                Pattern pattern = Pattern.compile(regExp);
+//                Matcher matcher = pattern.matcher(str);
+//
+//                int strcount = Integer.parseInt(matcher.replaceAll(""));
+//                if (result.containsKey(strvalue)){
+//                    result.put(strvalue,result.get(strvalue)+strcount);
+//                }
+//                else{
+//                    result.put(strvalue,strcount);
+//                }
+                String strvalue = new String();                 //字符
+                String strcount = new String();                //出现次数
+                int count = 0;
+                Boolean flag = false;                          //用于记录出现次数，有可能次数是两位数
+                for (int i = 0;i < str.length();i++){
+                    if (str.charAt(i) >= 'a'&&str.charAt(i) <='z'||str.charAt(i) >= 'A'&&str.charAt(i) <='Z'){
+                        strvalue += (str.charAt(i));
+                        break;
+                    }
+                }
+                for (int j = 1; j < str.length(); j++) {
+                    if (str.charAt(j) >= '0'&&str.charAt(j) <='9'){
+                        strcount +=str.charAt(j);
+                        flag = true;
+                    }
+                    else{
+                        if (flag){
+                            count = Integer.parseInt(strcount);
+                        }
 
-                int strcount = Integer.parseInt(matcher.replaceAll(""));
+                    }
+                }
+                count = Integer.parseInt(strcount);
                 if (result.containsKey(strvalue)){
-                    result.put(strvalue,result.get(strvalue)+strcount);
+                    result.put(strvalue,result.get(strvalue)+count);
                 }
                 else{
-                    result.put(strvalue,strcount);
+                    result.put(strvalue,count);
                 }
 
             }
